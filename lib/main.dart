@@ -28,7 +28,7 @@ Drawer menuDrawer(BuildContext context) {
       children: [
         const DrawerHeader(
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 143, 27, 118),
+            color:  Color.fromARGB(255, 91, 3, 109),
           ),
           child: Text(
             "Tunesick",
@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 81, 4, 82),
+        color: const Color.fromARGB(255, 82, 4, 48),
         borderRadius: BorderRadius.circular(18),
       ),
       child: Column(
@@ -110,8 +110,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: menuDrawer(context),
       appBar: AppBar(
-        title: const Text("Tunesick Home"),
-        backgroundColor: const Color.fromARGB(255, 172, 8, 85),
+        title: const Text("Tunesick Home", style: TextStyle( fontWeight: FontWeight.bold,),),
+        backgroundColor: const Color.fromARGB(255, 91, 3, 109),
       ),
       body: ListView(
         children: [
@@ -133,7 +133,7 @@ class HomePage extends StatelessWidget {
                 hintStyle: const TextStyle(color: Colors.white54),
                 prefixIcon: const Icon(Icons.search, color: Colors.white70),
                 filled: true,
-                fillColor: const Color.fromARGB(255, 76, 6, 35),
+                fillColor: const Color.fromARGB(255, 102, 6, 80),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
                   borderSide: BorderSide.none,
@@ -144,11 +144,11 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           postCard(
-            "@metalhead",
+            "@6667masterofpuppies6667",
             "Spineshank deserved way more recognition in the 2000s scene.",
           ),
           postCard(
-            "@altgirl",
+            "@triplet67",
             "What album has your favorite opening track?",
           ),
         ],
@@ -202,20 +202,25 @@ class ReviewsPage extends StatelessWidget {
     return Scaffold(
       drawer: menuDrawer(context),
       appBar: AppBar(
-        title: const Text("Tunesick Reviews"),
-        backgroundColor: const Color(0xFF110505),
+        title: const Text("Tunesick Reviews", style: TextStyle( fontWeight: FontWeight.bold,),),
+        backgroundColor: const Color.fromARGB(255, 91, 3, 109),
       ),
       body: ListView(
         children: [
           reviewCard(
-            "The Sickness - Disturbed",
-            "A defining nu metal album with iconic vocals and memorable riffs.",
+            "I Don't Wanna Grow Up - Descendents",
+            "Definidor do início do punk!",
             "★★★★☆ 4.5/5",
           ),
           reviewCard(
-            "Self-Destructive Pattern - Spineshank",
-            "Heavy, electronic and underrated release from the early 2000s.",
+            "Siamese Dream - The Smashing Pumpkins",
+            "Rock alternativo profundo e essencial.",
             "★★★★★ 5/5",
+          ),
+          reviewCard(
+            "Americana - The Offspring",
+            "Boas críticas com um som envolvente e bem elaborado.",
+            "★★★★☆ 4.5/5",
           ),
         ],
       ),
