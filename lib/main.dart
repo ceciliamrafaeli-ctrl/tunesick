@@ -74,10 +74,22 @@ Drawer menuDrawer(BuildContext context) {
   );
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  Widget postCard(String usuario, String conteudo) {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<int> curtidas = [12, 8];
+  List<bool> curtiu = [false, false];
+
+  Widget postCard(
+    int index,
+    String usuario,
+    String conteudo,
+  ) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(18),
@@ -99,6 +111,34 @@ class HomePage extends StatelessWidget {
           Text(
             conteudo,
             style: const TextStyle(color: Colors.white),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    if (curtiu[index]) {
+                      curtidas[index]--;
+                      curtiu[index] = false;
+                    } else {
+                      curtidas[index]++;
+                      curtiu[index] = true;
+                    }
+                  });
+                },
+                icon: Icon(
+                  curtiu[index]
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: const Color(0xFFFF4DB8),
+                ),
+              ),
+              Text(
+                "${curtidas[index]} curtidas",
+                style: const TextStyle(color: Colors.white70),
+              ),
+            ],
           ),
         ],
       ),
@@ -134,7 +174,8 @@ class HomePage extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: "Pesquisar artistas, álbuns...",
                 hintStyle: const TextStyle(color: Colors.white54),
-                prefixIcon: const Icon(Icons.search, color: Colors.white70),
+                prefixIcon:
+                    const Icon(Icons.search, color: Colors.white70),
                 filled: true,
                 fillColor: const Color.fromARGB(255, 102, 6, 80),
                 border: OutlineInputBorder(
@@ -147,12 +188,19 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           postCard(
+            0,
             "@6667masterofpuppies6667",
-            "Spineshank merecia muito mais reconhecimento na cena dos anos 2000.",
+            "GEEK USA É A MELHOR MUSICA DO SMASHING PUMPKINS.",
           ),
           postCard(
+            1,
             "@triplet67",
-            "Qual álbum tem sua faixa de abertura favorita?",
+            "eu sou a reencarnação do billy corgan",
+          ),
+           postCard(
+            2,
+            "@judysheena",
+            "Ramones eh mto poggers :D",
           ),
         ],
       ),
