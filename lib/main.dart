@@ -82,8 +82,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<int> curtidas = [12, 8, 15];
-  List<bool> curtiu = [false, false, false];
+  List<int> curtidas = [12, 8, 15, 666];
+  List<bool> curtiu = [false, false, false, false];
 
   Widget postCard(
     int index,
@@ -201,6 +201,11 @@ class _HomePageState extends State<HomePage> {
             2,
             "@judysheena",
             "Ramones eh mto poggers :D",
+          ),
+          postCard(
+            3,
+            "@cannibalangel",
+            "I DO A CROOKED LITTLE DANCE WITH MY FUNNY LITTLE MONKEY",
           ),
         ],
       ),
