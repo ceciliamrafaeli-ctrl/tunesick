@@ -28,7 +28,7 @@ Drawer menuDrawer(BuildContext context) {
       children: [
         const DrawerHeader(
           decoration: BoxDecoration(
-            color:  Color.fromARGB(255, 91, 3, 109),
+            color: Color.fromARGB(255, 91, 3, 109),
           ),
           child: Text(
             "Tunesick",
@@ -42,7 +42,7 @@ Drawer menuDrawer(BuildContext context) {
         ListTile(
           leading: const Icon(Icons.home, color: Colors.white70),
           title: const Text(
-            "Home",
+            "Início",
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
@@ -57,7 +57,7 @@ Drawer menuDrawer(BuildContext context) {
         ListTile(
           leading: const Icon(Icons.album, color: Colors.white70),
           title: const Text(
-            "Reviews",
+            "Avaliações",
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
@@ -110,7 +110,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: menuDrawer(context),
       appBar: AppBar(
-        title: const Text("Tunesick Home", style: TextStyle( fontWeight: FontWeight.bold,),),
+        title: const Text(
+          "Tunesick Início",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: const Color.fromARGB(255, 91, 3, 109),
       ),
       body: ListView(
@@ -118,7 +121,7 @@ class HomePage extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(18),
             child: Text(
-              "Music reviews, opinions and discussions.",
+              "Avaliações, opiniões e discussões musicais.",
               style: TextStyle(
                 color: Colors.white70,
                 fontSize: 16,
@@ -129,7 +132,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: TextField(
               decoration: InputDecoration(
-                hintText: "Search artists, albums...",
+                hintText: "Pesquisar artistas, álbuns...",
                 hintStyle: const TextStyle(color: Colors.white54),
                 prefixIcon: const Icon(Icons.search, color: Colors.white70),
                 filled: true,
@@ -145,13 +148,32 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 12),
           postCard(
             "@6667masterofpuppies6667",
-            "Spineshank deserved way more recognition in the 2000s scene.",
+            "Spineshank merecia muito mais reconhecimento na cena dos anos 2000.",
           ),
           postCard(
             "@triplet67",
-            "What album has your favorite opening track?",
+            "Qual álbum tem sua faixa de abertura favorita?",
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: const Color(0xFFFF1493),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CreatePostPage(),
+            ),
+          );
+        },
+        icon: const Icon(Icons.add, color: Colors.white),
+        label: const Text(
+          "Novo Post",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
@@ -202,7 +224,10 @@ class ReviewsPage extends StatelessWidget {
     return Scaffold(
       drawer: menuDrawer(context),
       appBar: AppBar(
-        title: const Text("Tunesick Reviews", style: TextStyle( fontWeight: FontWeight.bold,),),
+        title: const Text(
+          "Tunesick Avaliações",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: const Color.fromARGB(255, 91, 3, 109),
       ),
       body: ListView(
@@ -223,6 +248,69 @@ class ReviewsPage extends StatelessWidget {
             "★★★★☆ 4.5/5",
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CreatePostPage extends StatelessWidget {
+  const CreatePostPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Criar Post",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromARGB(255, 91, 3, 109),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          children: [
+            TextField(
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hintText: "Título do post...",
+                hintStyle: const TextStyle(color: Colors.white54),
+                filled: true,
+                fillColor: const Color.fromARGB(255, 102, 6, 80),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              maxLines: 6,
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hintText: "Compartilhe sua opinião musical...",
+                hintStyle: const TextStyle(color: Colors.white54),
+                filled: true,
+                fillColor: const Color.fromARGB(255, 102, 6, 80),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFFF1493),
+              ),
+              onPressed: () {},
+              child: const Text(
+                "Publicar",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
