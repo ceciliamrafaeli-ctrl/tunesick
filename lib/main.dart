@@ -235,7 +235,7 @@ class _HomePageState extends State<HomePage> {
 class ReviewsPage extends StatelessWidget {
   const ReviewsPage({super.key});
 
-  Widget reviewCard(String album, String review, String nota) {
+  Widget reviewCard(String album, String review, double nota) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(18),
@@ -261,7 +261,7 @@ class ReviewsPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            nota,
+            "Nota: $nota/5",
             style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -274,6 +274,44 @@ class ReviewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    List<Map<String, dynamic>> albuns = [
+      {
+        "nome": "I Don't Wanna Grow Up - Descendents",
+        "review": "Definidor do início do punk!",
+        "nota": 4.5,
+      },
+      {
+        "nome": "Siamese Dream - The Smashing Pumpkins",
+        "review": "Rock alternativo profundo e essencial.",
+        "nota": 5.0,
+      },
+      {
+        "nome": "Americana - The Offspring",
+        "review": "Boas críticas com um som envolvente e bem elaborado.",
+        "nota": 4.5,
+      },
+    ];
+
+    // PROCESSAMENTO
+    double somaNotas = 0;
+
+    for (var album in albuns) {
+      somaNotas += album["nota"];
+    }
+
+    double mediaNotas = somaNotas / albuns.length;
+
+    double maiorNota = albuns[0]["nota"];
+    String melhorAlbum = albuns[0]["nome"];
+
+    for (var album in albuns) {
+      if (album["nota"] > maiorNota) {
+        maiorNota = album["nota"];
+        melhorAlbum = album["nome"];
+      }
+    }
+
     return Scaffold(
       drawer: menuDrawer(context),
       appBar: AppBar(
@@ -285,20 +323,50 @@ class ReviewsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          reviewCard(
-            "I Don't Wanna Grow Up - Descendents",
-            "Definidor do início do punk!",
-            "★★★★☆ 4.5/5",
+          Container(
+            margin: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 102, 6, 80),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  "Média das notas do site: ${mediaNotas.toStringAsFixed(1)}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Melhor avaliado:",
+                  style: const TextStyle(color: Colors.white70),
+                ),
+                Text(
+                  melhorAlbum,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(0xFFFF4DB8),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Total de avaliações: ${albuns.length}",
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
           ),
-          reviewCard(
-            "Siamese Dream - The Smashing Pumpkins",
-            "Rock alternativo profundo e essencial.",
-            "★★★★★ 5/5",
-          ),
-          reviewCard(
-            "Americana - The Offspring",
-            "Boas críticas com um som envolvente e bem elaborado.",
-            "★★★★☆ 4.5/5",
+
+          ...albuns.map(
+            (album) => reviewCard(
+              album["nome"],
+              album["review"],
+              album["nota"],
+            ),
           ),
         ],
       ),
