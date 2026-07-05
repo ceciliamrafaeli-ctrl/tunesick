@@ -84,6 +84,21 @@ Drawer menuDrawer(BuildContext context) {
             );
           },
         ),
+        ListTile(
+  leading: const Icon(Icons.bar_chart, color: Colors.white70),
+  title: const Text(
+    "Estatísticas",
+    style: TextStyle(color: Colors.white),
+  ),
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const StatsPage(),
+      ),
+    );
+  },
+),
       ],
     ),
   );
@@ -521,6 +536,66 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+class StatsPage extends StatelessWidget {
+  const StatsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    List<int> curtidas = [420, 67, 42, 666];
+
+    int totalCurtidas = 0;
+
+    for (int curtida in curtidas) {
+      totalCurtidas += curtida;
+    }
+
+    double mediaCurtidas = totalCurtidas / curtidas.length;
+
+    return Scaffold(
+      drawer: menuDrawer(context),
+      appBar: AppBar(
+        title: const Text(
+          "Estatísticas",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromARGB(255, 91, 3, 109),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 80, 21, 80),
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    "Total de curtidas: $totalCurtidas",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Média de curtidas: ${mediaCurtidas.toStringAsFixed(1)}",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Quantidade de posts: 4",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
