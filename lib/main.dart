@@ -69,6 +69,21 @@ Drawer menuDrawer(BuildContext context) {
             );
           },
         ),
+        ListTile(
+          leading: const Icon(Icons.person, color: Colors.white70),
+          title: const Text(
+            "Perfil",
+            style: TextStyle(color: Colors.white),
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfilePage(),
+              ),
+            );
+          },
+        ),
       ],
     ),
   );
@@ -432,6 +447,80 @@ class CreatePostPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: menuDrawer(context),
+      appBar: AppBar(
+        title: const Text(
+          "Meu Perfil",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromARGB(255, 91, 3, 109),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          const CircleAvatar(
+            radius: 60,
+            backgroundColor: Color.fromARGB(255, 102, 6, 80),
+            child: Icon(
+              Icons.person,
+              size: 70,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Center(
+            child: Text(
+              "@cannibalangel",
+              style: TextStyle(
+                color: Color(0xFFFF4DB8),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 25),
+          Container(
+            padding: const EdgeInsets.all(18),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 80, 21, 80),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Banda favorita: Mindless Self Indulgence",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "Gênero favorito: Nu Metal",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "Posts publicados: 4",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "Curtidas recebidas: 1195",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
