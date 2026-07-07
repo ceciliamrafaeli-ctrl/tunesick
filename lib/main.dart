@@ -186,7 +186,20 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: const Color.fromARGB(255, 91, 3, 109),
       ),
-      body: ListView(
+      body: TweenAnimationBuilder<double>(
+  tween: Tween(begin: 0.0, end: 1.0),
+  duration: const Duration(milliseconds: 1700),
+  curve: Curves.easeOut,
+  builder: (context, value, child) {
+    return Opacity(
+      opacity: value,
+      child: Transform.translate(
+        offset: Offset(0, 40 * (1 - value)),
+        child: child,
+      ),
+    );
+  },
+  child: ListView(
         children: [
           const Padding(
             padding: EdgeInsets.all(18),
@@ -237,8 +250,9 @@ class _HomePageState extends State<HomePage> {
             "@cannibalangel",
             "I DO A CROOKED LITTLE DANCE WITH MY FUNNY LITTLE MONKEY",
           ),
-        ],
+               ],
       ),
+    ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: const Color(0xFFFF1493),
         onPressed: () {
@@ -450,16 +464,27 @@ class CreatePostPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFF1493),
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Publicar",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+            TweenAnimationBuilder<double>(
+  tween: Tween(begin: 0.8, end: 1.0),
+  duration: const Duration(milliseconds: 700),
+  curve: Curves.easeOutBack,
+  builder: (context, scale, child) {
+    return Transform.scale(
+      scale: scale,
+      child: child,
+    );
+  },
+  child: ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFFFF1493),
+    ),
+    onPressed: () {},
+    child: const Text(
+      "Publicar",
+      style: TextStyle(color: Colors.white),
+    ),
+  ),
+),
           ],
         ),
       ),
@@ -514,12 +539,12 @@ class ProfilePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Banda favorita: Mindless Self Indulgence",
+                  "Banda favorita: Legião Urbana",
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "Gênero favorito: Nu Metal",
+                  "Gênero favorito: punk-rock",
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 10),
