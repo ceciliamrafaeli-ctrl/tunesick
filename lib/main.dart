@@ -120,7 +120,17 @@ class _HomePageState extends State<HomePage> {
     String usuario,
     String conteudo,
   ) {
-    return Container(
+   return TweenAnimationBuilder<double>(
+  tween: Tween(begin: 0.9, end: 1.0),
+  duration: const Duration(milliseconds: 900),
+  curve: Curves.easeOutBack,
+  builder: (context, scale, child) {
+    return Transform.scale(
+      scale: scale,
+      child: child,
+    );
+  },
+  child: Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
@@ -171,8 +181,9 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ],
-      ),
-    );
+       ),
+    ),
+  );
   }
 
   @override
