@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
     String conteudo,
   ) {
    return TweenAnimationBuilder<double>(
-  tween: Tween(begin: 0.9, end: 1.0),
+  tween: Tween(begin: 0.4, end: 1.0),
   duration: const Duration(milliseconds: 900),
   curve: Curves.easeOutBack,
   builder: (context, scale, child) {
@@ -216,6 +216,7 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(18),
             child: Text(
               "Avaliações, opiniões e discussões musicais.",
+              
               style: TextStyle(
                 color: Colors.white70,
                 fontSize: 16,
